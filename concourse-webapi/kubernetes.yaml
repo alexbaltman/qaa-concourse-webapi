@@ -1,0 +1,27 @@
+---
+  containers:
+    - name: concourse-webapi
+      image: 10.203.188.243:30200/concourse-webapi:latest
+      env:
+        - name: CONCOURSE_BASIC_AUTH_USERNAME
+          value: concourse
+        - name: CONCOURSE_BASIC_AUTH_PASSWORD
+          value: concourse
+        - name: CONCOURSE_EXTERNAL_URL
+          value: "http://$(CONCOURSE_webapi_SERVICE_HOST):$(CONCOURSE_WEBAPI_SERVICE_PORT)"
+        - name: CONCOURSE_POSTGRES_DATA_SOURCE
+          value: "postgres://concourse:concourse@$(CONCOURSE_POSTGRESQL_SERVICE_HOST):$(CONCOURSE_POSTGRESQL_SERVICE_PORT)/concourse?sslmode=disable"
+      ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: concourse-webapi
+  labels:
+    name: concourse-webapi
+spec:
+  ports:
+    - port: 8080
+  selector:
+    name: concourse-webapi
