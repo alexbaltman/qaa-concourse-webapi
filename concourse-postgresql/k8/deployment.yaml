@@ -1,0 +1,27 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: concourse-postgresql
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: concourse-postgresql
+    spec:
+      containers:
+        - name: concourse-postgresql
+          #image: "{{ CICD_REGISTRY_SERVICE_HOST }}:{{ CICD_REGISTRY_PORT }}/concourse-postgresql:latest"
+          image: 10.203.188.243:30200/concourse-postgresql:latest
+          env:
+            - name: POSTGRES_USER
+              value: concourse
+            - name: POSTGRES_PASSWORD
+              value: concourse
+            - name: POSTGRES_DB
+              value: concourse
+            - name: PGDATA 
+              value: '/database'
+          ports:
+            - containerPort: 5432

@@ -1,0 +1,27 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: concourse-worker
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: concourse-worker
+    spec:
+      containers:
+      - name: concourse-worker
+        #image: 10.203.188.246:30200/concourse-webapi:latest
+        image: 10.203.188.243:30200/concourse-worker:latest
+        env:
+          - name: CONCOURSE_TSA_HOST
+            value: $(CONCOURSE_WEBAPI_SERVICE_HOST)
+          - name: CONCOURSE_TAG
+            value: k8
+        ports:
+          - containerPort: 7777
+            name: garden
+          - containerPort: 7788
+            name: baggageclaim
+
