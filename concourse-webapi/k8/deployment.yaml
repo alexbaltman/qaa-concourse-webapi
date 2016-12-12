@@ -12,8 +12,7 @@ spec:
     spec:
       containers:
       - name: concourse-webapi
-        #image: 10.203.188.246:30200/concourse-webapi:latest
-        image: 10.203.188.243:30200/concourse-webapi:latest
+        image: cicd-registry:30200/concourse-webapi:latest
         env:
           - name: CONCOURSE_BASIC_AUTH_USERNAME
             value: concourse

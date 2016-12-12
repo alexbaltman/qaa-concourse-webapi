@@ -14,6 +14,6 @@ ENV CONCOURSE_TSA_PUBLIC_KEY         /opt/concourse/keys/tsa_host_key.pub
 ENV CONCOURSE_TSA_WORKER_PRIVATE_KEY /opt/concourse/keys/worker_key
 
 RUN mkdir -p                         /opt/concourse/worker-state
-ENV CONCOURSE_WORKER_DIR             /opt/concourse/worker-state
+ENV CONCOURSE_WORK_DIR             /opt/concourse/worker-state
 
 ENTRYPOINT ["/usr/local/bin/dumb-init", "/usr/local/bin/concourse", "worker"]

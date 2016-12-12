@@ -1,5 +1,12 @@
 FROM ubuntu:16.04
 
+# aaltman - set defaults for local dev
+ENV CONCOURSE_BASIC_AUTH_USERNAME concourse
+ENV CONCOURSE_BASIC_AUTH_PASSWORD concourse
+ENV CONCOURSE_POSTGRES_DATA_SOURCE "postgres://concourse:concourse@localhost:5234/concourse?sslmode=disable"
+ENV CONCOURSE_EXTERNAL_URL http://localhost:8080
+# end defaults
+
 RUN apt-get update && apt-get -y install iproute2 ca-certificates wget
 
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 && chmod +x /usr/local/bin/dumb-init

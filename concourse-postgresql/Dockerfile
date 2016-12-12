@@ -1,6 +1,12 @@
 # vim:set ft=dockerfile:
 FROM alpine:3.4
 
+# aaltman - set defaults for local dev
+ENV POSTGRES_USER concourse
+ENV POSTGRES_PASSWORD concourse
+ENV POSTGRES_DB concourse
+ENV PGDATA '/database'
+
 # alpine includes "postgres" user/group in base install
 # /etc/passwd:22:postgres:x:70:70::/var/lib/postgresql:/bin/sh
 # /etc/group:34:postgres:x:70:

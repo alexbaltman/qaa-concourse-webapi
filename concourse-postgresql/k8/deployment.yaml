@@ -12,8 +12,7 @@ spec:
     spec:
       containers:
         - name: concourse-postgresql
-          #image: "{{ CICD_REGISTRY_SERVICE_HOST }}:{{ CICD_REGISTRY_PORT }}/concourse-postgresql:latest"
-          image: 10.203.188.243:30200/concourse-postgresql:latest
+          image: cicd-registry:30200/concourse-postgresql:latest
           env:
             - name: POSTGRES_USER
               value: concourse
@@ -25,3 +24,9 @@ spec:
               value: '/database'
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - mountPath: /database
+              name: data-volume
+      volumes:
+        - name: data-volume
+          emptyDir: {}
