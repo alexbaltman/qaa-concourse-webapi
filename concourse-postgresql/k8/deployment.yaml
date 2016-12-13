@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: concourse-postgresql
-          image: cicd-registry:30200/concourse-postgresql:latest
+          image: 10.203.188.244:30200/concourse-postgresql:latest
           env:
             - name: POSTGRES_USER
               value: concourse

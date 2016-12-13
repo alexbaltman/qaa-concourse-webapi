@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: concourse-worker
-        image: cicd-registry:30200/concourse-worker:latest
+        image: 10.203.188.244:30200/concourse-worker:latest
         env:
           - name: CONCOURSE_TSA_HOST
             value: $(CONCOURSE_WEBAPI_SERVICE_HOST)
